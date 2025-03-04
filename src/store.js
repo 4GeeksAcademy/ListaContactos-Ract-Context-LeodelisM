@@ -35,13 +35,13 @@ export const initialStore = ()=>{
 
 export default function storeReducer(store, action = {}) {
   switch(action.type){
-    case 'add_task':
+    case 'add_contact':
 
-      const { id,  color } = action.payload
+      const contact = action.payload;
 
       return {
         ...store,
-        todos: store.todos.map((todo) => (todo.id === id ? { ...todo, background: color } : todo))
+        contacts: [...store.contacts, contact]
       };
     default:
       throw Error('Unknown action.');

@@ -7,11 +7,7 @@ const ContactList = () => {
     const {store, dispatch} = useGlobalReducer()
 
     return (
-      <div className="container mt-5">
-          <div className="col-12 col-md-9 col-lg-8 mb-4 d-flex justify-content-end">
-            <button className="btn btn-success btn-sm">Add New Contact</button>
-          </div>
-        
+        <>
           {/* Verifica si hay contactos */}
           {store.contacts.length === 0 ? (
             <h3 className="text-center mt-5">No contacts found</h3>
@@ -29,7 +25,7 @@ const ContactList = () => {
               </div>
             ))
           )}
-        </div>
+          </>
     );
   };
         
