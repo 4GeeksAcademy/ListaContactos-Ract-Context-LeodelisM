@@ -1,4 +1,5 @@
 import React from "react";
+import useGlobalReducer from "../hooks/useGlobalReducer";
 import { AiFillPhone } from "react-icons/ai";
 import { AiFillMail } from "react-icons/ai";
 import { AiFillEnvironment } from "react-icons/ai";
@@ -6,6 +7,14 @@ import { AiFillEdit } from "react-icons/ai";
 import { AiFillDelete } from "react-icons/ai";
 
 const ContactCard = ({name, address, phone, email, id}) => {
+
+
+ const {store, dispatch} = useGlobalReducer()
+
+    const deleteContact = (id) => {
+        dispatch({type: "delete_contact", payload: id});
+    }
+
 
     return (
        
@@ -25,11 +34,18 @@ const ContactCard = ({name, address, phone, email, id}) => {
                     <p className="card-text">
                         <AiFillMail /> {email}
                     </p>
+                    <p className="card-text">
+                        id= {id}
+                    </p>
                 </div>
                 <div className="d-flex align-items-center gap-2">
                     <button className="btn btn-primary btn-sm"> 
                         <AiFillEdit /> Edit </button>
-                    <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#staticBackdrop"> 
+                    <button
+                    type="button" 
+                    class="btn btn-danger btn-sm" 
+                    data-bs-toggle="modal" 
+                    data-bs-target="#staticBackdrop"> 
                         <AiFillDelete /> Delete</button>
                         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                             <div class="modal-dialog">
@@ -43,7 +59,11 @@ const ContactCard = ({name, address, phone, email, id}) => {
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Oh, No!</button>
-                                        <button type="button" class="btn btn-primary">Yes, sure!</button>
+                                        <button 
+                                        onClick={() => deleteContact(id)}
+                                        data-bs-dismiss="modal"
+                                        type="button" 
+                                        class="btn btn-primary">Yes, sure!</button>
                                     </div>
                                 </div>
                             </div>
