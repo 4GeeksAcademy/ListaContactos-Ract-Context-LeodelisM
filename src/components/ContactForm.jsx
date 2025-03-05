@@ -2,20 +2,19 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 
-const ContactForm = ({onSave}) => {
-    const [name, setName] = useState("");
-    const [address, setAddress] = useState("");
-    const [phone, setPhone] = useState("");
-    const [email, setEmail] = useState("");
+const ContactForm = ({onSave, contact}) => {
+    const [name, setName] = useState(contact?.name || "");
+    const [address, setAddress] = useState(contact?.address || "");
+    const [phone, setPhone] = useState(contact?.phone || "");
+    const [email, setEmail] = useState(contact?.email || "");
     const [error, setError] = useState(null);
 
     const navigate = useNavigate();
 
-
     const onClickSave = (e) => {
         e.preventDefault();
         // TODO: add validations
-        onSave({name, address, phone, email});
+        onSave({name, address, phone, email, id: contact?.id});
 
         navigate("/");
     }

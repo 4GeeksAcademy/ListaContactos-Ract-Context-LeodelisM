@@ -11,7 +11,7 @@ export const AddContact = () => {
     const {store, dispatch} = useGlobalReducer()
 
     const onSaveContact = (contact) => {
-        dispatch({type: "add_contact", payload: contact});
+        dispatch({type: "add_contact", payload: {...contact, id: Date.now()}});
     }
 
 	return (

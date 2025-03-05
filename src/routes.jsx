@@ -10,6 +10,7 @@ import { Home } from "./pages/Home";
 import { Single } from "./pages/Single";
 import { Demo } from "./pages/Demo";
 import { AddContact } from "./pages/AddContact";
+import { EditContact } from "./pages/EditContact";
 
 
 export const router = createBrowserRouter(
@@ -26,6 +27,7 @@ export const router = createBrowserRouter(
         {/* Nested Routes: Defines sub-routes within the BaseHome component. */}
         <Route path="/" element={<Home />} />
         <Route path="/add" element={<AddContact/>} />
+        <Route path="/edit/:contactId" element={ <EditContact /> } />
         <Route path="/single/:theId" element={ <Single />} />  {/* Dynamic route for single items */}
         <Route path="/demo" element={<Demo />} />
       </Route>

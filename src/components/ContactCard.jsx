@@ -5,6 +5,7 @@ import { AiFillMail } from "react-icons/ai";
 import { AiFillEnvironment } from "react-icons/ai";
 import { AiFillEdit } from "react-icons/ai";
 import { AiFillDelete } from "react-icons/ai";
+import { Link } from "react-router-dom";
 
 const ContactCard = ({name, address, phone, email, id}) => {
 
@@ -39,8 +40,9 @@ const ContactCard = ({name, address, phone, email, id}) => {
                     </p>
                 </div>
                 <div className="d-flex align-items-center gap-2">
-                    <button className="btn btn-primary btn-sm"> 
-                        <AiFillEdit /> Edit </button>
+                    <Link to={`/edit/${id}`} className="btn btn-primary btn-sm"> 
+                        <AiFillEdit /> Edit
+                    </Link>
                     <button
                     type="button" 
                     class="btn btn-danger btn-sm" 
