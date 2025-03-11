@@ -40,15 +40,17 @@ const ContactCard = ({name, address, phone, email, id}) => {
                     </p>
                 </div>
                 <div className="d-flex align-items-center gap-2">
-                    <Link to={`/edit/${id}`} className="btn btn-primary btn-sm"> 
+                    <Link to={`/edit/${id}`} 
+                        className="btn btn-primary btn-sm"> 
                         <AiFillEdit /> Edit
                     </Link>
                     <button
-                    type="button" 
-                    class="btn btn-danger btn-sm" 
-                    data-bs-toggle="modal" 
-                    data-bs-target="#staticBackdrop"> 
-                        <AiFillDelete /> Delete</button>
+                        type="button" 
+                        class="btn btn-danger btn-sm" 
+                        data-bs-toggle="modal" 
+                        data-bs-target="#staticBackdrop"> 
+                        <AiFillDelete /> Delete
+                    </button>
                         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
@@ -62,10 +64,10 @@ const ContactCard = ({name, address, phone, email, id}) => {
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Oh, No!</button>
                                         <button 
-                                        onClick={() => deleteContact(id)}
-                                        data-bs-dismiss="modal"
-                                        type="button" 
-                                        class="btn btn-primary">Yes, sure!</button>
+                                            onClick={() => deleteContact(id)}
+                                            data-bs-dismiss="modal"
+                                            type="button" 
+                                            class="btn btn-primary">Yes, sure!</button>
                                     </div>
                                 </div>
                             </div>

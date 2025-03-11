@@ -1,9 +1,7 @@
 import {
     Link, useParams
 } from "react-router-dom";
-
 import useGlobalReducer from '../hooks/useGlobalReducer';
-
 import ContactForm from "../components/ContactForm.jsx";
 
 export const EditContact = () => {

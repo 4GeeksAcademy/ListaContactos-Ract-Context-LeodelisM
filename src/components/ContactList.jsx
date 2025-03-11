@@ -1,10 +1,35 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import useGlobalReducer from '../hooks/useGlobalReducer';
-import ContactCard from './ContactCard'; 
+import ContactCard from './ContactCard';
+
+import apiClient from '../apiClient';
 
 const ContactList = () => {
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
 
-    const {store, dispatch} = useGlobalReducer()
+    const {store, dispatch} = useGlobalReducer();
+
+    useEffect(() => {
+      renderizarContactos();
+    }, []);
+
+    async function renderizarContactos() {
+      setLoading(true);
+
+      try {
+        const contacts = await apiClient.getContacts();
+
+        dispatch({
+          type: "add_contacts",
+          payload: contacts
+        });
+
+        setLoading(false);
+      } catch (error) {
+        setError(error);
+      }
+    }
 
     return (
         <>
