@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 
-const ContactForm = ({onSave, contact}) => {
+const ContactForm = ({ onSave, contact }) => {
     const [name, setName] = useState(contact?.name || "");
     const [address, setAddress] = useState(contact?.address || "");
     const [phone, setPhone] = useState(contact?.phone || "");
@@ -13,8 +13,7 @@ const ContactForm = ({onSave, contact}) => {
 
     const onClickSave = (e) => {
         e.preventDefault();
-        // TODO: add validations
-        onSave({name, address, phone, email, id: contact?.id});
+        onSave({ name, address, phone, email, id: contact?.id });
 
         navigate("/");
     }
@@ -25,8 +24,8 @@ const ContactForm = ({onSave, contact}) => {
             <div className="mb-3">
                 <label className="form-label">Name</label>
                 <input
-                    type="text" 
-                    className="form-control" 
+                    type="text"
+                    className="form-control"
                     id="inputname"
                     onChange={(e) => setName(e.target.value)}
                     value={name}
@@ -35,9 +34,9 @@ const ContactForm = ({onSave, contact}) => {
             </div>
             <div className="mb-3">
                 <label className="form-label">Address</label>
-                <input 
-                    type="text" 
-                    className="form-control" 
+                <input
+                    type="text"
+                    className="form-control"
                     id="inputPassword"
                     onChange={(e) => setAddress(e.target.value)}
                     value={address}
@@ -46,10 +45,10 @@ const ContactForm = ({onSave, contact}) => {
             </div>
             <div className="mb-3">
                 <label className="form-label">Phone</label>
-                <input 
-                    type="text" 
-                    className="form-control" 
-                    id="inputPhone" 
+                <input
+                    type="text"
+                    className="form-control"
+                    id="inputPhone"
                     onChange={(e) => setPhone(e.target.value)}
                     value={phone}
                     required
@@ -57,12 +56,12 @@ const ContactForm = ({onSave, contact}) => {
             </div>
             <div className="mb-3">
                 <label className="form-label">Email</label>
-                <input 
-                    type="email" 
-                    className="form-control" 
+                <input
+                    type="email"
+                    className="form-control"
                     id="inputEmail"
                     onChange={(e) => setEmail(e.target.value)}
-                    value={email} 
+                    value={email}
                     required
                 />
             </div>

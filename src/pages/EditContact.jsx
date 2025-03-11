@@ -3,6 +3,7 @@ import {
 } from "react-router-dom";
 import useGlobalReducer from '../hooks/useGlobalReducer';
 import ContactForm from "../components/ContactForm.jsx";
+import apiClient from '../apiClient';
 
 export const EditContact = () => {
 
@@ -13,12 +14,21 @@ export const EditContact = () => {
     const { contactId } = useParams();
 
     const contact = store.contacts.find((c) => c.id === Number.parseInt(contactId));
-    console.log({contact});
 
-    const editContact = (editedContact) => {
-        console.log({editedContact})
-        dispatch({type: "edit_contact", payload: editedContact});
-    }
+    const editContact = async (editedContact) => {
+         try {
+        
+            const editContactRespond = await apiClient.editContact(editedContact);
+
+            dispatch({
+                type: "edit_contact",
+                payload: editContactRespond
+            });
+
+        } catch (error) {
+            console.error(error)
+        }
+    };
 
 	return (
 		<div className="container mt-5">
@@ -27,8 +37,6 @@ export const EditContact = () => {
 			</div>
             <div>
                 <p>Contact ID: {contactId}</p>
-                <p>Contact Found:</p>
-                <pre>{JSON.stringify(contact, null, 2)}</pre>
             </div>
 			<div>
                 {contact !== undefined ?
