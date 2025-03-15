@@ -2,20 +2,17 @@ import {
     Link
 } from "react-router-dom";
 
-import ContactList from "../components/ContactList.jsx";
+
+import Agendas from "../components/Agendas.jsx";
 
 
 export const Home = () => {
 
 	return (
 		<div className="container mt-5">
-			<div className="col-12 col-md-9 col-lg-8 mb-4 d-flex justify-content-end">
-				<Link 
-				className="btn btn-success btn-sm" 
-				to="/add">Add New Contact
-				</Link>
+			<div className="col-6 m-auto col-md-9 col-lg-8 mb-4 d-flex justify-content-end">
+				<Agendas/>
 			</div>
-			<ContactList/>
 		</div>
     )
 };

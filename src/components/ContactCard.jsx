@@ -30,65 +30,127 @@ const ContactCard = ({ name, address, phone, email, id }) => {
 
 
     return (
-
-        <div className="card">
-            <div className="card-body d-flex justify-content-between align-items-center">
-                <div className="me-3">
-                    <img src="src/assets/img/imagenperfil.png" alt="Imagen Perfil" />
+        <div className="card mb-3" style={{ borderRadius: "10px", borderColor: "#e0d6cc" }}>
+        <div className="card-body p-4">
+            <div className="d-flex align-items-center">
+                {/* Imagen de perfil */}
+                <div className="me-4">
+                    <div style={{ 
+                        width: "100px", 
+                        height: "100px",  
+                    }}>
+                        <img 
+                            src="src/assets/img/imagenperfil.png" 
+                            alt="Imagen Perfil" 
+                            className="img-fluid"
+                            style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                        />
+                    </div>
                 </div>
+                
+                {/* Información de contacto */}
                 <div className="flex-grow-1">
-                    <h5 className="card-title"><strong>{name}</strong></h5>
-                    <p className="card-text mb-1">
-                        <AiFillEnvironment /> {address}
-                    </p>
-                    <p className="card-text mb-1">
-                        <AiFillPhone /> {phone}
-                    </p>
-                    <p className="card-text">
-                        <AiFillMail /> {email}
-                    </p>
+                    <h5 className="fw-bold mb-2" style={{ color: "#8b5a2b" }}>{name}</h5>
+                    <div className="mb-1 d-flex align-items-center">
+                        <AiFillEnvironment style={{ color: "#c17a43", marginRight: "8px" }} /> 
+                        <span style={{ color: "#7d6e63", fontSize: "0.95rem" }}>{address}</span>
+                    </div>
+                    <div className="mb-1 d-flex align-items-center">
+                        <AiFillPhone style={{ color: "#c17a43", marginRight: "8px" }} /> 
+                        <span style={{ color: "#7d6e63", fontSize: "0.95rem" }}>{phone}</span>
+                    </div>
+                    <div className="d-flex align-items-center">
+                        <AiFillMail style={{ color: "#c17a43", marginRight: "8px" }} /> 
+                        <span style={{ color: "#7d6e63", fontSize: "0.95rem" }}>{email}</span>
+                    </div>
                 </div>
-                <div className="d-flex align-items-center gap-2">
-                    <Link to={`/edit/${id}`}
-                        className="btn btn-primary btn-sm">
-                        <AiFillEdit /> Edit
+                
+                {/* Botones de acción */}
+                <div className="d-flex flex-column gap-2">
+                    <Link 
+                        to={`/edit/${id}`}
+                        className="btn btn-sm px-3 text-white"
+                        style={{ 
+                            backgroundColor: "#d19275", 
+                            borderColor: "#d19275", 
+                            borderRadius: "6px",
+                            width: "100px"
+                        }}
+                    >
+                        <AiFillEdit className="me-1" /> Editar
                     </Link>
                     <button
                         type="button"
-                        className="btn btn-danger btn-sm"
+                        className="btn btn-sm px-3 text-white"
+                        style={{ 
+                            backgroundColor: "#670f22", 
+                            borderColor: "#670f22",
+                            color: "#a68a7b",
+                            borderRadius: "6px",
+                            width: "100px"
+                        }}
                         data-bs-toggle="modal"
-                        data-bs-target={`#staticBackdrop-${id}`}>
-                        <AiFillDelete /> Delete
+                        data-bs-target={`#staticBackdrop-${id}`}
+                    >
+                        <AiFillDelete className="me-1" /> Borrar
                     </button>
-                    <div className="modal fade" id={`staticBackdrop-${id}`} 
-                        data-bs-backdrop="static" 
-                        data-bs-keyboard="false" 
-                        tabindex="-1" 
-                        aria-labelledby="staticBackdropLabel" 
-                        aria-hidden="true">
-                        <div className="modal-dialog">
-                            <div className="modal-content">
-                                <div className="modal-header">
-                                    <h1 className="modal-title fs-5" id="staticBackdropLabel">Are you sure?</h1>
-                                    <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div className="modal-body">
-                                    If you delete this your contact will not be shown!
-                                </div>
-                                <div className="modal-footer">
-                                    <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Oh, No!</button>
-                                    <button
-                                        onClick={() => deleteContact(id)}
-                                        data-bs-dismiss="modal"
-                                        type="button"
-                                        className="btn btn-danger">Yes, sure!</button>
-                                </div>
-                            </div>
-                        </div>
+                </div>
+            </div>
+        </div>
+        
+        {/* Modal */}
+        <div 
+            className="modal fade" 
+            id={`staticBackdrop-${id}`}
+            data-bs-backdrop="static"
+            data-bs-keyboard="false"
+            tabIndex="-1"
+            aria-labelledby={`staticBackdropLabel-${id}`}
+            aria-hidden="true"
+        >
+            <div className="modal-dialog modal-dialog-centered">
+                <div className="modal-content" style={{ borderRadius: "10px", borderColor: "#e0d6cc" }}>
+                    <div className="modal-header" style={{ borderColor: "#e0d6cc" }}>
+                        <h5 className="modal-title" id={`staticBackdropLabel-${id}`} style={{ color: "#8b5a2b" }}>
+                            ¿Estás seguro?
+                        </h5>
+                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div className="modal-body py-4" style={{ color: "#670f22" }}>
+                        Si eliminas este contacto, no podrás recuperarlo =(
+                    </div>
+                    <div className="modal-footer" style={{ borderColor: "#e0d6cc" }}>
+                        <button 
+                            type="button" 
+                            className="btn text-white"
+                            style={{ 
+                                backgroundColor: "#d19275", 
+                                borderColor: "#e0d6cc",
+                                color: "#a68a7b",
+                                borderRadius: "6px"
+                            }} 
+                            data-bs-dismiss="modal"
+                        >
+                            Cancelar
+                        </button>
+                        <button
+                            onClick={() => deleteContact(id)}
+                            data-bs-dismiss="modal"
+                            type="button"
+                            className="btn text-white"
+                            style={{ 
+                                backgroundColor: "#670f22", 
+                                borderColor: "#670f22",
+                                borderRadius: "6px"
+                            }}
+                        >
+                            Eliminar
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
     )
 };
 

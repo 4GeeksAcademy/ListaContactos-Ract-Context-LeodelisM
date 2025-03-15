@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import useGlobalReducer from '../hooks/useGlobalReducer';
 import ContactCard from './ContactCard';
-
 import apiClient from '../apiClient';
 
 const ContactList = () => {
@@ -16,15 +15,18 @@ const ContactList = () => {
 
   async function renderizarContactos() {
     setLoading(true);
-    setError(null); // Reinicia el error al comenzar
+    setError(null); 
 
     try {
       // Obtener la agenda, o crearla si no existe
 
       try {
+
         await apiClient.getAgenda();
+      
       } catch (agendaError) {
         console.log("Creando agenda porque no existe...");
+        
         await apiClient.createAgenda();
       }
 
@@ -39,6 +41,7 @@ const ContactList = () => {
     } catch (error) {
       console.error("Error al cargar contactos:", error);
       setError(error.message || "No se pudieron cargar los contactos");
+    
     } finally {
       setLoading(false);
     }
@@ -51,6 +54,7 @@ const ContactList = () => {
 
   return (
     <>
+    
       {/* Verifica si hay contactos */}
       {store.contacts.length === 0 ? (
         <h3 className="text-center mt-5">No contacts found</h3>

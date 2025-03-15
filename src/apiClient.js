@@ -1,4 +1,19 @@
-// usuario_Api = leodelis
+export async function getAgendaAll() {
+    try {
+        const response = await fetch(`https://playground.4geeks.com/contact/agendas?offset=0&limit=10`);
+        
+        if (!response.ok) {
+            throw new Error("No se pudieron cargar las agendas");
+        }
+        
+        const data = await response.json();
+        return data.agendas;
+        
+    } catch (error) {
+        console.log("Error al cargar las agendas:");
+        throw error; 
+    }
+};
 
 export async function getContacts() {
     try {
@@ -129,5 +144,6 @@ export default {
     editContact,
     deleteContact,
     getAgenda,
-    createAgenda
+    createAgenda,
+    getAgendaAll
 }
